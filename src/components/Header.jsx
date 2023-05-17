@@ -23,7 +23,7 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (globalState) => ({
-  email: globalState.User.email,
+  email: globalState.user.email,
 });
 
 export default connect(mapStateToProps)(Header);

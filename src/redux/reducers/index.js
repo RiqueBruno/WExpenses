@@ -6,6 +6,9 @@ import wallet from './wallet';
 
 // Configure os seus reducers.
 // ATENÇÃO: você obrigatoriamente tem que utilizar as chaves "user" e "wallet" no seu estado global
-const rootReducers = combineReducers({ user, wallet });
+const rootReducers = combineReducers({
+  User: user,
+  Wallet: wallet,
+});
 
 export default rootReducers;

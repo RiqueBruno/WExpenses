@@ -2,6 +2,7 @@
 export const USER_EMAIL = 'USER_EMAIL';
 // export const USER_WALLET = 'USER_WALLET';
 export const API_REQUEST = 'API_REQUEST';
+export const SET_EXPENSES = 'SET_EXPENSES';
 
 export const userEmail = (payload) => ({
   type: USER_EMAIL,
@@ -13,6 +14,11 @@ export const apiRequest = (payload) => ({
   payload,
 });
 
+export const setExpenses = (payload) => ({
+  type: SET_EXPENSES,
+  payload,
+});
+
 export function currenciesApi() {
   return async (currencies) => {
     const API = await fetch('https://economia.awesomeapi.com.br/json/all');
@@ -21,3 +27,13 @@ export function currenciesApi() {
     currencies(apiRequest(acronymsList));
   };
 }
+
+export const putExpenses = (payload) => async (currencies, getState) => {
+  const { expenses } = getState().wallet;
+  const API = await fetch('https://economia.awesomeapi.com.br/json/all');
+  const exchangeRates = await API.json();
+  const id = expenses.length > 0 ? expenses
+    .reduce((acc, expense) => (expense.id > acc ? expense.id : acc), 0) + 1 : 0;
+  const expense = { id, ...payload, exchangeRates };
+  currencies(setExpenses([...expenses, expense]));
+};

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { currenciesApi } from '../redux/actions';
+import { currenciesApi, putExpenses } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
-    value: 0,
+    value: '',
     description: '',
-    currency: '',
-    method: '',
-    tag: '',
+    currency: 'USD',
+    method: 'Dinheiro',
+    tag: 'Alimentação',
   };
 
   componentDidMount() {
@@ -21,6 +21,18 @@ class WalletForm extends Component {
     this.setState({
       [name]: value,
     });
+  };
+
+  handlerClick = () => {
+    const { dispatch } = this.props;
+    dispatch(putExpenses(this.state));
+    this.setState(() => ({
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+    }));
   };
 
   render() {
@@ -85,9 +97,9 @@ class WalletForm extends Component {
             value={ method }
             onChange={ this.handlerChange }
           >
-            <option value="dinheiro">Dinheiro</option>
-            <option value="credito">Cartão de crédito</option>
-            <option value="debito">Cartão de débito</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
           </select>
         </label>
         <label htmlFor="inputTag">
@@ -99,25 +111,29 @@ class WalletForm extends Component {
             value={ tag }
             onChange={ this.handlerChange }
           >
-            <option value="alimentacao">Alimentação</option>
-            <option value="lazer">Lazer</option>
-            <option value="trabalho">Trabalho</option>
-            <option value="transporte">Transporte</option>
-            <option value="saude">Saúde</option>
+            <option value="Alimentação">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saúde">Saúde</option>
           </select>
         </label>
+        <button type="button" onClick={ this.handlerClick }>Adicionar despesa</button>
       </div>
     );
   }
 }
 
 WalletForm.propTypes = {
-  currencies: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  dispatch: PropTypes.func.isRequired,
-};
+  currencies: PropTypes.arrayOf(PropTypes.string),
+  expenses: PropTypes.arrayOf(),
+  dispatch: PropTypes.func,
+}.isRequired;
 
 const mapStateToProps = (globalState) => ({
   currencies: globalState.wallet.currencies,
+  expenses: globalState.wallet.expenses,
+  // aprendi que da pra usar também  ...globalState.wallet, que já pega todos.
 });
 
 export default connect(mapStateToProps)(WalletForm);

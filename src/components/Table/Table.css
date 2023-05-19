@@ -1,0 +1,18 @@
+.sectionTable {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  width: 90%;
+}
+
+.table {
+  background-color: blueviolet;
+  border: 1px solid black;
+  width: 90%;
+}
+
+.tableHeader {
+  border: 1px solid black;
+  padding: 5px 20px;
+  width: 60px;
+}

@@ -12,7 +12,7 @@ const wallet = (state = INITIAL_STATE, action) => {
   case API_REQUEST:
     return ({
       ...state,
-      currencies: action.payload,
+      currencies: payload,
     });
   case SET_EXPENSES:
     return ({

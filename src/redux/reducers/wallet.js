@@ -1,5 +1,5 @@
 import { API_REQUEST, SET_EXPENSES,
-  DEL_EXPENSE, ID_EXPENSE_EDITING, SAVE_EXPENSE_EDITED } from '../actions';
+  DEL_EXPENSE, ID_EXPENSE_EDITING, SAVE_EXPENSE_EDITED } from '../actions/actionType';
 
 const INITIAL_STATE = {
   currencies: [],

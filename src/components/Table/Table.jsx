@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { delExpense } from '../../redux/actions';
+import { delExpense, idExpenseEditing } from '../../redux/actions';
 import './Table.css';
 
 class Table extends Component {
@@ -9,6 +9,12 @@ class Table extends Component {
     const { id } = event.target;
     const { dispatch } = this.props;
     dispatch(delExpense(id));
+  };
+
+  handlerClickEditBtn = (event) => {
+    const { id } = event.target;
+    const { dispatch } = this.props;
+    dispatch(idExpenseEditing(Number(id)));
   };
 
   renderExpenseRow({ id, value, description, currency, method, tag, exchangeRates }) {
@@ -32,7 +38,13 @@ class Table extends Component {
           >
             Del
           </button>
-          <button id={ id }>Edit</button>
+          <button
+            id={ id }
+            data-testid="edit-btn"
+            onClick={ this.handlerClickEditBtn }
+          >
+            Edit
+          </button>
         </td>
       </tr>
     );

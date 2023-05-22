@@ -1,13 +1,13 @@
-// Coloque aqui suas actions
-// export const USER_WALLET = 'USER_WALLET';
+import { USER_EMAIL, API_REQUEST, SET_EXPENSES,
+  DEL_EXPENSE, ID_EXPENSE_EDITING, SAVE_EXPENSE_EDITED } from './actionType';
 
-export const USER_EMAIL = 'USER_EMAIL';
+// USER INFOS
 export const userEmail = (payload) => ({
   type: USER_EMAIL,
   payload,
 });
 
-export const API_REQUEST = 'API_REQUEST';
+// FORM INFOS
 export const apiRequest = (payload) => ({
   type: API_REQUEST,
   payload,
@@ -21,7 +21,8 @@ export function currenciesApi() {
     currencies(apiRequest(acronymsList));
   };
 }
-export const SET_EXPENSES = 'SET_EXPENSES';
+
+// ACTIONS USER
 export const setExpenses = (payload) => ({
   type: SET_EXPENSES,
   payload,
@@ -37,8 +38,24 @@ export const putExpenses = (payload) => async (currencies, getState) => {
   currencies(setExpenses([...expenses, expense]));
 };
 
-export const DEL_EXPENSE = 'DEL_EXPENSE';
 export const delExpense = (id) => ({
   type: DEL_EXPENSE,
   payload: id,
 });
+
+export const idExpenseEditing = (payload) => ({
+  type: ID_EXPENSE_EDITING,
+  payload,
+});
+
+export const saveExpenseEdited = (payload) => ({
+  type: SAVE_EXPENSE_EDITED,
+  payload,
+});
+
+export const hrCkToSaveExpenseEdited = (payload) => async (currencies, getState) => {
+  const { expenses, idTargetEditing } = getState().wallet;
+  const { exchangeRates } = expenses
+    .find((expense) => Number(expense.id) === Number(idTargetEditing));
+  currencies(saveExpenseEdited({ id: idTargetEditing, ...payload, exchangeRates }));
+};

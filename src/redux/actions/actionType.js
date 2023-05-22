@@ -1,0 +1,6 @@
+export const USER_EMAIL = 'USER_EMAIL';
+export const API_REQUEST = 'API_REQUEST';
+export const SET_EXPENSES = 'SET_EXPENSES';
+export const DEL_EXPENSE = 'DEL_EXPENSE';
+export const ID_EXPENSE_EDITING = 'ID_EXPENSE_EDITING';
+export const SAVE_EXPENSE_EDITED = 'SAVE_EXPENSE_EDITED';

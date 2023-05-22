@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { currenciesApi, putExpenses } from '../redux/actions';
+import { currenciesApi, putExpenses,
+  hrCkToSaveExpenseEdited } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -10,11 +11,31 @@ class WalletForm extends Component {
     currency: 'USD',
     method: 'Dinheiro',
     tag: 'Alimentação',
+    isEditing: false,
   };
 
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(currenciesApi());
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.isEditingTrue && nextProps.isEditingTrue !== nextState.isEditing) {
+      const { idTargetEditing, expenses } = nextProps;
+      const findExpenseById = expenses[idTargetEditing];
+      if (typeof findExpenseById !== 'undefined') {
+        const { value, description, currency, method, tag } = findExpenseById;
+        this.setState({
+          value,
+          description,
+          currency,
+          method,
+          tag,
+          isEditing: true,
+        });
+      }
+    }
+    return true;
   }
 
   handlerChange = ({ target: { name, value } }) => {
@@ -23,20 +44,33 @@ class WalletForm extends Component {
     });
   };
 
+  defaultState = () => this.setState({
+    value: '',
+    description: '',
+    currency: 'USD',
+    method: 'Dinheiro',
+    tag: 'Alimentação',
+    isEditing: false,
+  });
+
   handlerClick = () => {
     const { dispatch } = this.props;
-    dispatch(putExpenses(this.state));
-    this.setState(() => ({
-      value: '',
-      description: '',
-      currency: 'USD',
-      method: 'Dinheiro',
-      tag: 'Alimentação',
-    }));
+    const { value, description, currency, method, tag } = this.state;
+    const newState = { value, description, currency, method, tag };
+    dispatch(putExpenses(newState));
+    this.defaultState();
+  };
+
+  hrCkToSaveExpenseEditeds = () => {
+    const { dispatch } = this.props;
+    const { value, description, currency, method, tag } = this.state;
+    const newState = { value, description, currency, method, tag };
+    dispatch(hrCkToSaveExpenseEdited(newState));
+    this.defaultState();
   };
 
   render() {
-    const { currencies } = this.props;
+    const { currencies, isEditingTrue } = this.props;
     const {
       value,
       description,
@@ -118,7 +152,15 @@ class WalletForm extends Component {
             <option value="Saúde">Saúde</option>
           </select>
         </label>
-        <button type="button" onClick={ this.handlerClick }>Adicionar despesa</button>
+        {isEditingTrue ? (
+          <button type="button" onClick={ this.hrCkToSaveExpenseEditeds }>
+            Editar despesa
+          </button>
+        ) : (
+          <button type="button" onClick={ this.handlerClick }>
+            Adicionar despesa
+          </button>
+        )}
       </div>
     );
   }
@@ -133,6 +175,8 @@ WalletForm.propTypes = {
 const mapStateToProps = (globalState) => ({
   currencies: globalState.wallet.currencies,
   expenses: globalState.wallet.expenses,
+  isEditingTrue: globalState.wallet.isEditingTrue,
+  idTargetEditing: globalState.wallet.idTargetEditing,
   // aprendi que da pra usar também  ...globalState.wallet, que já pega todos.
 });
 

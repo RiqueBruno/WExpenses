@@ -1,0 +1,50 @@
+.WalletForm {
+  align-items: center;
+  border-top: rgb(160, 160, 160) 1px solid;
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.WalletForm label {
+  margin-top: 20px;
+}
+
+.WalletForm input , .WalletForm select {
+  background-color: rgba(70, 70, 70, 0.568);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  height: 30px;
+  margin-top: 4px;
+  width: 200px;
+}
+
+.WalletForm select option {
+  background-color: #363636;
+  border: none;
+  text-align: center;
+}
+
+.btn {
+  background: linear-gradient(40deg, #dd02ce 0%, #f00000 33%, #ff9100 56%, #ffff03 100%);
+  background-color: #ffd500;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-family: Arial, serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 40px;
+  padding: 10px 56px;
+}
+
+
+.btn:hover {
+  background: linear-gradient(to bottom, #cf4a02 5%, #edce34 100%);
+  background-color: #cf4a02;
+}

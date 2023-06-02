@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { currenciesApi, putExpenses,
   hrCkToSaveExpenseEdited } from '../redux/actions';
+import './WalletForm/WalletForm.css';
 
 class WalletForm extends Component {
   state = {
@@ -79,85 +80,90 @@ class WalletForm extends Component {
       tag,
     } = this.state;
     return (
-      <div>
+      <div className="WalletForm">
         <label htmlFor="inputValue">
           Valor:
-          <input
-            type="number"
-            name="value"
-            id="inputValue"
-            data-testid="value-input"
-            min="0"
-            value={ value }
-            onChange={ this.handlerChange }
-          />
         </label>
+        <input
+          type="number"
+          name="value"
+          id="inputValue"
+          data-testid="value-input"
+          min="0"
+          value={ value }
+          onChange={ this.handlerChange }
+        />
+
         <label htmlFor="inputDescript">
           Descrição:
-          <input
-            type="text"
-            name="description"
-            id="inputDescript"
-            data-testid="description-input"
-            value={ description }
-            onChange={ this.handlerChange }
-          />
         </label>
+        <input
+          type="text"
+          name="description"
+          id="inputDescript"
+          data-testid="description-input"
+          value={ description }
+          onChange={ this.handlerChange }
+        />
+
         <label htmlFor="inputCurrency">
           Moeda:
-          <select
-            data-testid="currency-input"
-            name="currency"
-            id="inputCurrency"
-            value={ currency }
-            onChange={ this.handlerChange }
-          >
-            { currencies.map((acronym) => (
-              <option
-                key={ acronym }
-                value={ acronym }
-              >
-                { acronym }
-              </option>
-            )) }
-          </select>
         </label>
+        <select
+          data-testid="currency-input"
+          name="currency"
+          id="inputCurrency"
+          value={ currency }
+          onChange={ this.handlerChange }
+        >
+          { currencies.map((acronym) => (
+            <option
+              key={ acronym }
+              value={ acronym }
+            >
+              { acronym }
+            </option>
+          )) }
+        </select>
+
         <label htmlFor="inputMethod">
           Método de pagamento:
-          <select
-            data-testid="method-input"
-            name="method"
-            id="inputMethod"
-            value={ method }
-            onChange={ this.handlerChange }
-          >
-            <option value="Dinheiro">Dinheiro</option>
-            <option value="Cartão de crédito">Cartão de crédito</option>
-            <option value="Cartão de débito">Cartão de débito</option>
-          </select>
         </label>
+        <select
+          data-testid="method-input"
+          name="method"
+          id="inputMethod"
+          value={ method }
+          onChange={ this.handlerChange }
+        >
+          <option value="Dinheiro">Dinheiro</option>
+          <option value="Cartão de crédito">Cartão de crédito</option>
+          <option value="Cartão de débito">Cartão de débito</option>
+        </select>
+
         <label htmlFor="inputTag">
           Tag:
-          <select
-            data-testid="tag-input"
-            name="tag"
-            id="inputTag"
-            value={ tag }
-            onChange={ this.handlerChange }
-          >
-            <option value="Alimentação">Alimentação</option>
-            <option value="Lazer">Lazer</option>
-            <option value="Trabalho">Trabalho</option>
-            <option value="Transporte">Transporte</option>
-            <option value="Saúde">Saúde</option>
-          </select>
         </label>
+        <select
+          data-testid="tag-input"
+          name="tag"
+          id="inputTag"
+          value={ tag }
+          onChange={ this.handlerChange }
+        >
+          <option value="Alimentação">Alimentação</option>
+          <option value="Lazer">Lazer</option>
+          <option value="Trabalho">Trabalho</option>
+          <option value="Transporte">Transporte</option>
+          <option value="Saúde">Saúde</option>
+        </select>
+
         {isEditingTrue ? (
-          <button type="button" onClick={ this.hrCkToSaveExpenseEditeds }>
+          <button type="button" className="btn" onClick={ this.hrCkToSaveExpenseEditeds }>
             Editar despesa
           </button>
         ) : (
-          <button type="button" onClick={ this.handlerClick }>
+          <button type="button" className="btn" onClick={ this.handlerClick }>
             Adicionar despesa
           </button>
         )}

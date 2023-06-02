@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
 import { delExpense, idExpenseEditing } from '../../redux/actions';
 import './Table.css';
 
@@ -21,7 +22,7 @@ class Table extends Component {
     const { name, ask } = exchangeRates[currency];
 
     return (
-      <tr key={ id }>
+      <tr key={ id } className="trLine">
         <td>{description}</td>
         <td>{tag}</td>
         <td>{method}</td>
@@ -33,17 +34,19 @@ class Table extends Component {
         <td>
           <button
             id={ id }
+            className="btnTable"
             data-testid="delete-btn"
             onClick={ this.handlerClickDelBtn }
           >
-            Del
+            <AiFillDelete color="red" />
           </button>
           <button
             id={ id }
+            className="btnTable"
             data-testid="edit-btn"
             onClick={ this.handlerClickEditBtn }
           >
-            Edit
+            <AiFillEdit color="green" />
           </button>
         </td>
       </tr>
@@ -68,7 +71,7 @@ class Table extends Component {
               <th className="tableHeader">Editar/Excluir</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="tbody">
             {expenses.map((expense) => this.renderExpenseRow(expense))}
           </tbody>
         </table>

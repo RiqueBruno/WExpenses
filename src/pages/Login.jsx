@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { userEmail } from '../redux/actions';
+import logo from './CSS/image/logoFull.png';
+import './CSS/Login.css';
 
 class Login extends React.Component {
   state = {
@@ -38,27 +40,41 @@ class Login extends React.Component {
   render() {
     const { btnIsDisabled } = this.state;
     return (
-      <article>
-        <input
-          type="text"
-          name="email"
-          data-testid="email-input"
-          onChange={ this.handlerChange }
-        />
-        <input
-          type="password"
-          name="password"
-          data-testid="password-input"
-          onChange={ this.handlerChange }
-        />
-        <button
-          type="button"
-          name="btnIsActive"
-          disabled={ btnIsDisabled }
-          onClick={ this.handlerClick }
-        >
-          Entrar
-        </button>
+      <article className="Login">
+        <form className="formLogin">
+          <img src={ logo } alt="Icon WExpenses" />
+          <label htmlFor="email" className="label">
+            <p>Email</p>
+            <input
+              className="input"
+              id="email"
+              type="text"
+              name="email"
+              data-testid="email-input"
+              onChange={ this.handlerChange }
+            />
+          </label>
+          <label htmlFor="password" className="label">
+            <p>Senha</p>
+            <input
+              className="input"
+              id="password"
+              type="password"
+              name="password"
+              data-testid="password-input"
+              onChange={ this.handlerChange }
+            />
+          </label>
+          <button
+            type="button"
+            name="btnIsActive"
+            className="btn-login"
+            disabled={ btnIsDisabled }
+            onClick={ this.handlerClick }
+          >
+            Entrar
+          </button>
+        </form>
       </article>
     );
   }

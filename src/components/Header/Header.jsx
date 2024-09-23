@@ -8,36 +8,45 @@ import profileIcon from '../../assets/images/profile.svg';
 class Header extends Component {
   render() {
     const { email, expenses } = this.props;
+    const moneyQtt = expenses
+      .reduce((acc, expense) => {
+        const { currency, value, exchangeRates } = expense;
+        const rates = Object.values(exchangeRates).filter(
+          ({ code, codein }) => code !== 'USDT' && codein !== 'BRLT'
+        );
+        const exchangeRatesFilter = rates.filter(
+          ({ code }) => code === currency
+        );
+        acc += Number(exchangeRatesFilter[0].ask) * Number(value);
+        return acc;
+      }, 0)
+      .toFixed(2);
+
     return (
-      <header className="header">
-        <img src={logo} alt="Icon WExpenses" />
-        <div>
-          <p data-testid="email-field" className="emailHeader">
-            <img src={profileIcon} alt="Icon Email" />
-            {email}
-          </p>
-          <div className="headerValue">
-            <p data-testid="total-field" className="moneyQuantity">
-              <img src={coinIcon} alt="Icon Coin" />
-              {expenses
-                .reduce((acc, expense) => {
-                  const { currency, value, exchangeRates } = expense;
-                  const rates = Object.values(exchangeRates).filter(
-                    ({ code, codein }) => code !== 'USDT' && codein !== 'BRLT'
-                  );
-                  const exchangeRatesFilter = rates.filter(
-                    ({ code }) => code === currency
-                  );
-                  acc += Number(exchangeRatesFilter[0].ask) * Number(value);
-                  return acc;
-                }, 0)
-                .toFixed(2)}
-            </p>
-            <p data-testid="header-currency-field" className="brl">
-              BRL{' '}
-            </p>
-          </div>
-        </div>
+      <header className="text-primary flex w-full h-16 justify-between items-center mb-4">
+        <img
+          src={logo}
+          alt="Icon WExpenses"
+          className="w-24 h-20 md:ml-40 md:h-28 md:w-32"
+        />
+        <nav className="flex w-[66%]">
+          <a
+            href='/carteira'
+            className="flex items-center w-[50%] text-xs md:justify-center"
+          >
+              <img src={coinIcon} alt="Icon Dinheiro" className="mr-1 w-6 h-6" />
+              <p className='hidden md:block md:mr-2'>Despesas: </p>
+              {` ${moneyQtt} BRL`}
+          </a>
+          <a
+            href='/carteira'
+            className="flex items-center w-[50%] text-xs md:justify-center"
+          >
+            <img src={profileIcon} alt="Icon Email" className="mr-1 w-6 h-6" />
+            <p className='hidden md:block md:mr-2'>Email:</p>
+            {email || 'user@email.com'}
+          </a>
+        </nav>
       </header>
     );
   }

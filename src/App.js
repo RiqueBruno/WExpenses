@@ -6,7 +6,7 @@ import { NotFound } from './pages/NotFound';
 
 function App() {
   return (
-    <div>
+    <div className="h-screen w-full">
       <Switch>
         <Route exact path="/" component={ Login } />
         <Route exact path="/carteira" component={ Wallet } />

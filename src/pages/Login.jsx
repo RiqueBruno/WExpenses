@@ -77,9 +77,9 @@ class Login extends React.Component {
             </button>
           </form>
         </article>
-        <div>
-          <div />
-          <img src={ bg } alt="Background da pagina de login." />
+        <div className="h-[40%] w-full flex items-center justify-center relative">
+          <img src={ bg } alt="Background da pagina de login." className="w-full h-full z-0" />
+          <div className="w-full h-full z-40 absolute bg-bg-dark-gradient" />
         </div>
       </main>
     );

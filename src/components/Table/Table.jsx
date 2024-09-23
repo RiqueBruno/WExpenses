@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
 import { delExpense, idExpenseEditing } from '../../redux/actions';
-import './Table.css';
 
 class Table extends Component {
   handlerClickDelBtn = (event) => {

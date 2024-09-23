@@ -1,8 +1,7 @@
 import React from 'react';
-import Header from '../components/Header';
-import WalletForm from '../components/WalletForm';
+import Header from '../components/Header/Header';
+import WalletForm from '../components/WalletForm/WalletForm';
 import Table from '../components/Table/Table';
-import './CSS/Wallet.css';
 
 class Wallet extends React.Component {
   render() {

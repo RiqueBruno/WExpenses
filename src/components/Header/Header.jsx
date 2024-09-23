@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import logo from '../../assets/images/logo-noBg.svg'
+import logo from '../../assets/images/logo-noBg.svg';
+import coinIcon from '../../assets/images/coins.svg';
+import profileIcon from '../../assets/images/profile.svg';
 
 class Header extends Component {
   render() {
     const { email, expenses } = this.props;
     return (
-      <div className="header">
+      <header className="header">
         <img src={logo} alt="Icon WExpenses" />
         <div>
           <p data-testid="email-field" className="emailHeader">
+            <img src={profileIcon} alt="Icon Email" />
             {email}
           </p>
           <div className="headerValue">
             <p data-testid="total-field" className="moneyQuantity">
+              <img src={coinIcon} alt="Icon Coin" />
               {expenses
                 .reduce((acc, expense) => {
                   const { currency, value, exchangeRates } = expense;
@@ -34,7 +38,7 @@ class Header extends Component {
             </p>
           </div>
         </div>
-      </div>
+      </header>
     );
   }
 }

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { currenciesApi, putExpenses,
-  hrCkToSaveExpenseEdited } from '../redux/actions';
-import './WalletForm/WalletForm.css';
+  hrCkToSaveExpenseEdited } from '../../redux/actions';
 
 class WalletForm extends Component {
   state = {

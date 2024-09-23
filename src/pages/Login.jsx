@@ -40,8 +40,8 @@ class Login extends React.Component {
   render() {
     const { btnIsDisabled } = this.state;
     return (
-      <main>
-        <article className="Login">
+      <main className="bg-black h-full w-full md:flex">
+        <article className="h-[60%] w-full">
           <form className="formLogin">
             <img src={ logo } alt="Logo WExpenses" />
             <label htmlFor="email" className="label">

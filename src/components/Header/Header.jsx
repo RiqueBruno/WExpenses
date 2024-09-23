@@ -9,22 +9,28 @@ class Header extends Component {
       <div className="header">
         <img src="" alt="Icon WExpenses" />
         <div>
-          <p data-testid="email-field" className="emailHeader">{email}</p>
+          <p data-testid="email-field" className="emailHeader">
+            {email}
+          </p>
           <div className="headerValue">
             <p data-testid="total-field" className="moneyQuantity">
-              {
-                expenses.reduce((acc, expense) => {
+              {expenses
+                .reduce((acc, expense) => {
                   const { currency, value, exchangeRates } = expense;
-                  const rates = Object.values(exchangeRates)
-                    .filter(({ code, codein }) => code !== 'USDT' && codein !== 'BRLT');
-                  const exchangeRatesFilter = rates
-                    .filter(({ code }) => code === currency);
+                  const rates = Object.values(exchangeRates).filter(
+                    ({ code, codein }) => code !== 'USDT' && codein !== 'BRLT'
+                  );
+                  const exchangeRatesFilter = rates.filter(
+                    ({ code }) => code === currency
+                  );
                   acc += Number(exchangeRatesFilter[0].ask) * Number(value);
                   return acc;
-                }, 0).toFixed(2)
-              }
+                }, 0)
+                .toFixed(2)}
             </p>
-            <p data-testid="header-currency-field" className="brl">BRL </p>
+            <p data-testid="header-currency-field" className="brl">
+              BRL{' '}
+            </p>
           </div>
         </div>
       </div>
@@ -42,7 +48,7 @@ Header.propTypes = {
       exchangeRates: PropTypes.shape({
         ask: PropTypes.string,
       }),
-    }),
+    })
   ),
 }.isRequired;
 

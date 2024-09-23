@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="h-screen w-full">
       <Switch>
-        <Route exact path="/" component={ Login } />
-        <Route exact path="/carteira" component={ Wallet } />
-        <Route path="*" component={ NotFound } />
+        <Route exact path="/" component={Login} />
+        <Route exact path="/carteira" component={Wallet} />
+        <Route path="*" component={NotFound} />
       </Switch>
     </div>
   );

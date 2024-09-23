@@ -17,11 +17,19 @@ class Table extends Component {
     dispatch(idExpenseEditing(Number(id)));
   };
 
-  renderExpenseRow({ id, value, description, currency, method, tag, exchangeRates }) {
+  renderExpenseRow({
+    id,
+    value,
+    description,
+    currency,
+    method,
+    tag,
+    exchangeRates,
+  }) {
     const { name, ask } = exchangeRates[currency];
 
     return (
-      <tr key={ id } className="trLine">
+      <tr key={id} className="trLine">
         <td>{description}</td>
         <td>{tag}</td>
         <td>{method}</td>
@@ -32,18 +40,18 @@ class Table extends Component {
         <td>Real</td>
         <td>
           <button
-            id={ id }
+            id={id}
             className="btnTable"
             data-testid="delete-btn"
-            onClick={ this.handlerClickDelBtn }
+            onClick={this.handlerClickDelBtn}
           >
             <AiFillDelete color="red" />
           </button>
           <button
-            id={ id }
+            id={id}
             className="btnTable"
             data-testid="edit-btn"
-            onClick={ this.handlerClickEditBtn }
+            onClick={this.handlerClickEditBtn}
           >
             <AiFillEdit color="green" />
           </button>

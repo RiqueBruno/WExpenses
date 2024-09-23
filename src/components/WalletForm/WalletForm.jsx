@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { currenciesApi, putExpenses,
-  hrCkToSaveExpenseEdited } from '../../redux/actions';
+import {
+  currenciesApi,
+  putExpenses,
+  hrCkToSaveExpenseEdited,
+} from '../../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -20,7 +23,10 @@ class WalletForm extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.isEditingTrue && nextProps.isEditingTrue !== nextState.isEditing) {
+    if (
+      nextProps.isEditingTrue &&
+      nextProps.isEditingTrue !== nextState.isEditing
+    ) {
       const { idTargetEditing, expenses } = nextProps;
       const findExpenseById = expenses[idTargetEditing];
       if (typeof findExpenseById !== 'undefined') {
@@ -44,14 +50,15 @@ class WalletForm extends Component {
     });
   };
 
-  defaultState = () => this.setState({
-    value: '',
-    description: '',
-    currency: 'USD',
-    method: 'Dinheiro',
-    tag: 'Alimentação',
-    isEditing: false,
-  });
+  defaultState = () =>
+    this.setState({
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+      isEditing: false,
+    });
 
   handlerClick = () => {
     const { dispatch } = this.props;
@@ -71,84 +78,65 @@ class WalletForm extends Component {
 
   render() {
     const { currencies, isEditingTrue } = this.props;
-    const {
-      value,
-      description,
-      currency,
-      method,
-      tag,
-    } = this.state;
+    const { value, description, currency, method, tag } = this.state;
     return (
       <div className="WalletForm">
-        <label htmlFor="inputValue">
-          Valor:
-        </label>
+        <label htmlFor="inputValue">Valor:</label>
         <input
           type="number"
           name="value"
           id="inputValue"
           data-testid="value-input"
           min="0"
-          value={ value }
-          onChange={ this.handlerChange }
+          value={value}
+          onChange={this.handlerChange}
         />
 
-        <label htmlFor="inputDescript">
-          Descrição:
-        </label>
+        <label htmlFor="inputDescript">Descrição:</label>
         <input
           type="text"
           name="description"
           id="inputDescript"
           data-testid="description-input"
-          value={ description }
-          onChange={ this.handlerChange }
+          value={description}
+          onChange={this.handlerChange}
         />
 
-        <label htmlFor="inputCurrency">
-          Moeda:
-        </label>
+        <label htmlFor="inputCurrency">Moeda:</label>
         <select
           data-testid="currency-input"
           name="currency"
           id="inputCurrency"
-          value={ currency }
-          onChange={ this.handlerChange }
+          value={currency}
+          onChange={this.handlerChange}
         >
-          { currencies.map((acronym) => (
-            <option
-              key={ acronym }
-              value={ acronym }
-            >
-              { acronym }
+          {currencies.map((acronym) => (
+            <option key={acronym} value={acronym}>
+              {acronym}
             </option>
-          )) }
+          ))}
         </select>
 
-        <label htmlFor="inputMethod">
-          Método de pagamento:
-        </label>
+        <label htmlFor="inputMethod">Método de pagamento:</label>
         <select
           data-testid="method-input"
           name="method"
           id="inputMethod"
-          value={ method }
-          onChange={ this.handlerChange }
+          value={method}
+          onChange={this.handlerChange}
         >
           <option value="Dinheiro">Dinheiro</option>
           <option value="Cartão de crédito">Cartão de crédito</option>
           <option value="Cartão de débito">Cartão de débito</option>
         </select>
 
-        <label htmlFor="inputTag">
-          Tag:
-        </label>
+        <label htmlFor="inputTag">Tag:</label>
         <select
           data-testid="tag-input"
           name="tag"
           id="inputTag"
-          value={ tag }
-          onChange={ this.handlerChange }
+          value={tag}
+          onChange={this.handlerChange}
         >
           <option value="Alimentação">Alimentação</option>
           <option value="Lazer">Lazer</option>
@@ -158,11 +146,15 @@ class WalletForm extends Component {
         </select>
 
         {isEditingTrue ? (
-          <button type="button" className="btn" onClick={ this.hrCkToSaveExpenseEditeds }>
+          <button
+            type="button"
+            className="btn"
+            onClick={this.hrCkToSaveExpenseEditeds}
+          >
             Editar despesa
           </button>
         ) : (
-          <button type="button" className="btn" onClick={ this.handlerClick }>
+          <button type="button" className="btn" onClick={this.handlerClick}>
             Adicionar despesa
           </button>
         )}

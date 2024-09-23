@@ -1,7 +1,7 @@
-import React, { FC, InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes } from "react";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   type: "text" | "email" | "password" | "number";
   placeholder: string;
   value: string;
@@ -9,7 +9,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   children?: React.ReactNode;
 }
 
-const Input: FC<InputProps> = ({
+const Input = ({
   label,
   type,
   placeholder,
@@ -17,12 +17,12 @@ const Input: FC<InputProps> = ({
   onChange,
   children,
   ...props
-}): React.ReactElement => {
+}: InputProps): React.ReactElement => {
   return (
-    <label htmlFor={type} className="label">
+    <label htmlFor={type} className="flex flex-col w-full my-2">
       {label}
       <input
-        className=""
+        className="border border-x-primary rounded-md p-2 placeholder:text-grayOrangeLight text-primary w-full"
         id={type}
         type={type}
         placeholder={placeholder}

@@ -1,6 +1,15 @@
 {
-  "extends": ["@trybe/eslint-config-frontend", "plugin:prettier/recommended"],
+  "extends": ["@trybe/eslint-config-frontend", "prettier"],
   "rules": {
     "max-len": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/tests/**/*.js"],
+      "rules": {
+        "max-lines": ["off"],
+        "no-magic-numbers": ["off"]
+      }
+    }
+  ]
 }

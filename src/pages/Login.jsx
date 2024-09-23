@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { userEmail } from '../redux/actions';
-import logo from './CSS/image/logoFull.png';
 import './CSS/Login.css';
 
 class Login extends React.Component {

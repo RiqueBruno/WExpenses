@@ -15,6 +15,7 @@ module.exports = {
     },
     backgroundImage: {
       'bg-btn-gradient': 'linear-gradient(to bottom, #FFD600 0%, #F98C29 64%, #FF2305 91%, #8205FF 100%)',
+      'bg-dark-gradient': 'linear-gradient(to bottom, #000000 23%, #0000004D 100%)',
     },
   },
   plugins: [],

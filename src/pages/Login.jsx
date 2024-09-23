@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { userEmail } from '../redux/actions';
 import logo from '../assets/images/logo-noBg.svg';
 import bg from '../assets/images/bg-login.png';
+import Input from '../components/Input/Input.tsx';
 
 class Login extends React.Component {
   state = {
@@ -41,31 +42,23 @@ class Login extends React.Component {
     const { btnIsDisabled } = this.state;
     return (
       <main className="bg-black h-full w-full md:flex">
-        <article className="h-[60%] w-full">
-          <form className="formLogin">
+        <article className="h-[60%] w-full flex items-center justify-center">
+          <form className="w-4/5 flex flex-col text-white items-center justify-center p-2">
             <img src={ logo } alt="Logo WExpenses" />
-            <label htmlFor="email" className="label">
-              Email
-              <input
-                className="input"
-                id="email"
-                type="text"
-                name="email"
-                data-testid="email-input"
-                onChange={ this.handlerChange }
-              />
-            </label>
-            <label htmlFor="password" className="label">
-              Senha
-              <input
-                className="input"
-                id="password"
-                type="password"
-                name="password"
-                data-testid="password-input"
-                onChange={ this.handlerChange }
-              />
-            </label>
+            <Input
+              type="text"
+              name="email"
+              label="Email"
+              data-testid="email-input"
+              onChange={ this.handlerChange }
+            />
+            <Input
+              type="password"
+              name="password"
+              label="Senha"
+              data-testid="password-input"
+              onChange={ this.handlerChange }
+            />
             <button
               type="button"
               name="btnIsActive"

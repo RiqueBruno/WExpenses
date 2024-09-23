@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { userEmail } from '../redux/actions';
-import './CSS/Login.css';
 
 class Login extends React.Component {
   state = {
@@ -41,7 +40,7 @@ class Login extends React.Component {
     return (
       <article className="Login">
         <form className="formLogin">
-          <img src={ logo } alt="Icon WExpenses" />
+          <img src="" alt="Icon WExpenses" />
           <label htmlFor="email" className="label">
             <p>Email</p>
             <input

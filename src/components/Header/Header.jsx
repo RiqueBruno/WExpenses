@@ -23,7 +23,7 @@ class Header extends Component {
       .toFixed(2);
 
     return (
-      <header className="text-primary flex w-full h-16 justify-between items-center mb-4">
+      <header className="text-primary flex w-full h-16 justify-between items-center mb-4 z-[99]">
         <img
           src={logo}
           alt="Icon WExpenses"

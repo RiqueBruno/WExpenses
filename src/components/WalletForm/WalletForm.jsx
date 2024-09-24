@@ -108,7 +108,7 @@ class WalletForm extends Component {
     ];
         
     return (
-      <article className="md:w-[28%] md:h-full md:border-2 md:border-primary md:rounded-md py-6 px-2 pb-8 flex flex-col justify-center items-center md:mr-8">
+      <article className="md:w-[28%] z-[0] md:h-full md:bg-orangeTranparent md:border-2 md:border-primary md:rounded-md py-6 px-2 pb-8 flex flex-col justify-center items-center md:mr-8">
           <button
             type="button"
             className={`${canOpenForm ? "hidden" : "block md:hidden"} bg-bg-btn-gradient hover:bg-bg-btn-gradient-reverse text-white p-2 rounded-md`}
@@ -116,7 +116,7 @@ class WalletForm extends Component {
           >
             Nova despesa
           </button>
-              <form className={`${canOpenForm ? "block" : "hidden"} md:block w-full flex-col flex justify-center px-8`}>
+              <form className={`bg-orangeTranparent z-[0] animate-slide-down transition md:animate-none ${canOpenForm ? "block" : "hidden"} md:block w-full flex-col flex justify-center px-8 py-4 rounded-md border-2 border-primary md:border-none`}>
                 <h2 className="w-full text-center text-lg mb-8">Adicione suas Despesas</h2>
                 <Input
                   type="number"

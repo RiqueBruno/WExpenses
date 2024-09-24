@@ -19,7 +19,7 @@ const Input = ({
   ...props
 }: InputProps): React.ReactElement => {
   return (
-    <label htmlFor={type} className="flex flex-col w-full my-2">
+    <label htmlFor={type} className="flex flex-col w-full my-4">
       {label}
       <input
         className="border border-x-primary rounded-md p-2 placeholder:text-grayOrangeLight text-primary w-full"

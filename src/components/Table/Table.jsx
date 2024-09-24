@@ -21,14 +21,14 @@ class Table extends Component {
   handlerClickDelBtn = (event) => {
     const { id } = event.currentTarget;
     const { dispatch } = this.props;
-    
+
     dispatch(delExpense(id));
   };
 
   handlerClickEditBtn = (event) => {
     const { id } = event.currentTarget;
     const { dispatch } = this.props;
-    
+
     dispatch(idExpenseEditing(Number(id)));
   };
 
@@ -44,15 +44,34 @@ class Table extends Component {
     const { name, ask } = exchangeRates[currency];
 
     return (
-      <tr key={id} className="flex flex-row w-full h-28 p-4 border-b border-primary">
-        <td className="flex justify-center items-center text-center w-32">{description}</td>
-        <td className="flex justify-center items-center text-center w-32">{tag}</td>
-        <td className="flex justify-center items-center text-center w-32">{method}</td>
-        <td className="flex justify-center items-center text-center w-32">{Number(value).toFixed(2)}</td>
-        <td className="flex justify-center items-center text-center w-32">{name}</td>
-        <td className="flex justify-center items-center text-center w-32">{Number(ask).toFixed(2)}</td>
-        <td className="flex justify-center items-center text-center w-32">{(Number(value) * Number(ask)).toFixed(2)}</td>
-        <td className="flex justify-center items-center text-center w-32">Real</td>
+      <tr
+        key={id}
+        className="flex flex-row w-full h-28 p-4 border-b border-primary"
+      >
+        <td className="flex justify-center items-center text-center w-32">
+          {description}
+        </td>
+        <td className="flex justify-center items-center text-center w-32">
+          {tag}
+        </td>
+        <td className="flex justify-center items-center text-center w-32">
+          {method}
+        </td>
+        <td className="flex justify-center items-center text-center w-32">
+          {Number(value).toFixed(2)}
+        </td>
+        <td className="flex justify-center items-center text-center w-32">
+          {name}
+        </td>
+        <td className="flex justify-center items-center text-center w-32">
+          {Number(ask).toFixed(2)}
+        </td>
+        <td className="flex justify-center items-center text-center w-32">
+          {(Number(value) * Number(ask)).toFixed(2)}
+        </td>
+        <td className="flex justify-center items-center text-center w-32">
+          Real
+        </td>
         <td className="flex justify-center items-center text-center w-32">
           <button
             id={id}
@@ -76,13 +95,18 @@ class Table extends Component {
   renderExpenseRowH = (expense) => {
     const { id, title } = expense;
     return (
-      <th key={id} className="text-center h-full w-32 border-x border-white px-2">{title}</th>
+      <th
+        key={id}
+        className="text-center h-full w-32 border-x border-white px-2"
+      >
+        {title}
+      </th>
     );
   };
 
   render() {
     const { expenses } = this.props;
-    
+
     return (
       <article className="w-full h-96 md:w-full md:max-h-[800px] md:h-[700px] overflow-x-auto overflow-y-scroll bg-gray border-2 border-primary rounded-md p-8 md:shadow-custom scrollClass">
         <table className="w-full h-fit">

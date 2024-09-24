@@ -1,7 +1,11 @@
 {
   "extends": ["@trybe/eslint-config-frontend", "prettier"],
   "rules": {
-    "max-len": "off"
+    "max-len": "off",
+    "react/function-component-definition": "off",
+    "arrow-body-style": "off",
+    "react/require-default-props": "off",
+    "no-restricted-globals": "off"
   },
   "overrides": [
     {

@@ -70,7 +70,14 @@ class WalletForm extends Component {
   handlerClick = () => {
     const { dispatch } = this.props;
     const { value, description, currency, method, tag } = this.state;
-    const newState = { value, description, currency, method, tag, newExpense: false };
+    const newState = {
+      value,
+      description,
+      currency,
+      method,
+      tag,
+      newExpense: false,
+    };
     dispatch(putExpenses(newState));
     this.defaultState();
   };
@@ -78,7 +85,14 @@ class WalletForm extends Component {
   hrCkToSaveExpenseEditeds = () => {
     const { dispatch } = this.props;
     const { value, description, currency, method, tag } = this.state;
-    const newState = { value, description, currency, method, tag, newExpense: false };
+    const newState = {
+      value,
+      description,
+      currency,
+      method,
+      tag,
+      newExpense: false,
+    };
     dispatch(hrCkToSaveExpenseEdited(newState));
     this.defaultState();
   };
@@ -91,7 +105,8 @@ class WalletForm extends Component {
 
   render() {
     const { currencies, isEditingTrue } = this.props;
-    const { value, description, currency, method, tag, newExpense } = this.state;
+    const { value, description, currency, method, tag, newExpense } =
+      this.state;
     const canOpenForm = isEditingTrue || newExpense === true;
     const isFormValid = Number(value) > 0 && description.length > 0;
     const paymentMethods = [
@@ -107,79 +122,83 @@ class WalletForm extends Component {
       'Transporte',
       'Saúde',
     ];
-        
+
     return (
       <article className="md:w-[28%] z-[0] md:h-full md:bg-orangeTranparent md:border-2 md:border-primary md:rounded-md py-6 px-2 pb-8 flex flex-col justify-center items-center md:mr-8 md:shadow-custom">
-          <button
-            type="button"
-            className={`${canOpenForm ? "hidden" : "block md:hidden"} bg-bg-btn-gradient hover:bg-bg-btn-gradient-reverse text-white p-2 rounded-md`}
-            onClick={this.canOpenFormClick}
-          >
-            Nova despesa
-          </button>
-              <form className={`bg-orangeTranparent z-[0] animate-slide-down transition md:animate-none ${canOpenForm ? "block" : "hidden"} md:block w-full flex-col flex justify-center px-8 py-4 rounded-md border-2 border-primary md:border-none`}>
-                <h2 className="w-full text-center text-lg mb-8">Adicione suas Despesas</h2>
-                <Input
-                  type="number"
-                  name="value"
-                  id="inputValue"
-                  placeholder='0'
-                  min="0"
-                  value={value}
-                  label="Valor"
-                  onChange={this.handlerChange}
-                />        
-                <Input
-                  type="text"
-                  name="description"
-                  id="inputDescript"
-                  placeholder='Descrição'
-                  value={description}
-                  label="Descrição"
-                  onChange={this.handlerChange}
-                />
-                <Select
-                  label='Moeda'
-                  name="currency"
-                  value={currency}
-                  onChange={this.handlerChange}
-                  options={currencies}
-                />        
-                <Select
-                  label='Método de pagamento'
-                  name="method"
-                  value={method}
-                  onChange={this.handlerChange}
-                  options={paymentMethods}
-                />
-                <Select
-                  label='Categoria'
-                  name="tag"
-                  value={tag}
-                  onChange={this.handlerChange}
-                  options={expenseCategories}
-                />
-        
-                {isEditingTrue ? (
-                  <button
-                    type="button"
-                    disabled={!isFormValid}
-                    className=" bg-bg-btn-gradient hover:bg-bg-btn-gradient-reverse text-white p-2 rounded-md mt-4 w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-bg-btn-gradient"
-                    onClick={this.hrCkToSaveExpenseEditeds}
-                  >
-                    Editar despesa
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    disabled={!isFormValid}
-                    className=" bg-bg-btn-gradient hover:bg-bg-btn-gradient-reverse text-white p-2 rounded-md mt-4 w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-bg-btn-gradient"
-                    onClick={this.handlerClick}
-                  >
-                    Salvar despesa
-                  </button>
-                )}
-              </form>        
+        <button
+          type="button"
+          className={`${canOpenForm ? 'hidden' : 'block md:hidden'} bg-bg-btn-gradient hover:bg-bg-btn-gradient-reverse text-white p-2 rounded-md`}
+          onClick={this.canOpenFormClick}
+        >
+          Nova despesa
+        </button>
+        <form
+          className={`bg-orangeTranparent z-[0] animate-slide-down transition md:animate-none ${canOpenForm ? 'block' : 'hidden'} md:block w-full flex-col flex justify-center px-8 py-4 rounded-md border-2 border-primary md:border-none`}
+        >
+          <h2 className="w-full text-center text-lg mb-8">
+            Adicione suas Despesas
+          </h2>
+          <Input
+            type="number"
+            name="value"
+            id="inputValue"
+            placeholder="0"
+            min="0"
+            value={value}
+            label="Valor"
+            onChange={this.handlerChange}
+          />
+          <Input
+            type="text"
+            name="description"
+            id="inputDescript"
+            placeholder="Descrição"
+            value={description}
+            label="Descrição"
+            onChange={this.handlerChange}
+          />
+          <Select
+            label="Moeda"
+            name="currency"
+            value={currency}
+            onChange={this.handlerChange}
+            options={currencies}
+          />
+          <Select
+            label="Método de pagamento"
+            name="method"
+            value={method}
+            onChange={this.handlerChange}
+            options={paymentMethods}
+          />
+          <Select
+            label="Categoria"
+            name="tag"
+            value={tag}
+            onChange={this.handlerChange}
+            options={expenseCategories}
+          />
+
+          {isEditingTrue ? (
+            <button
+              type="button"
+              disabled={!isFormValid}
+              className=" bg-bg-btn-gradient hover:bg-bg-btn-gradient-reverse text-white p-2 rounded-md mt-4 w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-bg-btn-gradient"
+              onClick={this.hrCkToSaveExpenseEditeds}
+            >
+              Editar despesa
+            </button>
+          ) : (
+            <button
+              type="button"
+              disabled={!isFormValid}
+              className=" bg-bg-btn-gradient hover:bg-bg-btn-gradient-reverse text-white p-2 rounded-md mt-4 w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-bg-btn-gradient"
+              onClick={this.handlerClick}
+            >
+              Salvar despesa
+            </button>
+          )}
+        </form>
       </article>
     );
   }

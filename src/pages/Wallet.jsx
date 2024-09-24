@@ -21,19 +21,18 @@ class Wallet extends React.Component {
   componentDidUpdate(prevProps) {
     const { expenses } = this.props;
     console.log(expenses);
-    
 
     if (prevProps.expenses !== expenses) {
       localStorage.setItem('expenses', JSON.stringify(expenses));
     }
   }
 
-  getTotalByTag (tag, expenses) {
+  getTotalByTag(tag, expenses) {
     const result = expenses
       .filter((expense) => expense.tag === tag)
       .reduce((total, expense) => total + Number(expense.value), 0);
     return Number(result);
-  };
+  }
 
   render() {
     const { expenses } = this.props;
@@ -43,24 +42,23 @@ class Wallet extends React.Component {
       legend: {
         position: 'bottom',
         textStyle: { color: '#ff5722', fontSize: 14 },
-        titleTextStyle: { color: '#ffffff', fontSize: 16 }, 
+        titleTextStyle: { color: '#ffffff', fontSize: 16 },
       },
       hAxis: {
         title: 'Categoria',
         textStyle: { color: '#ff5722', fontSize: 14 },
-        titleTextStyle: { color: '#ffffff', fontSize: 16 }, 
+        titleTextStyle: { color: '#ffffff', fontSize: 16 },
       },
       vAxis: {
         title: 'Valor',
         textStyle: { color: '#ff5722', fontSize: 14 },
-        titleTextStyle: { color: '#ffffff', fontSize: 16 }, 
+        titleTextStyle: { color: '#ffffff', fontSize: 16 },
       },
       series: {
         0: { color: '#ff5722' },
         1: { color: '#8205FF' },
-
       },
-      titleTextStyle: { 
+      titleTextStyle: {
         color: '#ffffff',
         fontSize: 20,
         bold: true,
@@ -71,11 +69,20 @@ class Wallet extends React.Component {
       },
     };
 
-    const categories = ['Alimentação', 'Saúde', 'Lazer', 'Trabalho', 'Transporte'];
+    const categories = [
+      'Alimentação',
+      'Saúde',
+      'Lazer',
+      'Trabalho',
+      'Transporte',
+    ];
 
     const data = [
       ['Categoria', 'Total'],
-      ...categories.map((category) => [category, this.getTotalByTag(category, expenses)]),
+      ...categories.map((category) => [
+        category,
+        this.getTotalByTag(category, expenses),
+      ]),
     ];
     return (
       <main className="bg-black h-full w-full overflow-hidden overflow-y-auto flex flex-col p-4 items-center scrollClass">
@@ -86,8 +93,8 @@ class Wallet extends React.Component {
         </section>
         <section className="w-full h-full">
           <ChartComponent
-            chartType='ColumnChart'
-            width='100%'
+            chartType="ColumnChart"
+            width="100%"
             data={data}
             options={options}
           />
@@ -98,7 +105,7 @@ class Wallet extends React.Component {
 }
 
 Wallet.propTypes = {
-  expenses: PropTypes.arrayOf
+  expenses: PropTypes.arrayOf,
 }.IsRequired;
 
 const mapStateToProps = (globalState) => ({

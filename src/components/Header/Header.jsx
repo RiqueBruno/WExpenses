@@ -31,19 +31,19 @@ class Header extends Component {
         />
         <nav className="flex w-[66%]">
           <a
-            href='/carteira'
+            href="/carteira"
             className="flex items-center w-[50%] text-xs md:justify-center"
           >
-              <img src={coinIcon} alt="Icon Dinheiro" className="mr-1 w-6 h-6" />
-              <p className='hidden md:block md:mr-2'>Despesas: </p>
-              {` ${moneyQtt} BRL`}
+            <img src={coinIcon} alt="Icon Dinheiro" className="mr-1 w-6 h-6" />
+            <p className="hidden md:block md:mr-2">Despesas: </p>
+            {` ${moneyQtt} BRL`}
           </a>
           <a
-            href='/carteira'
+            href="/carteira"
             className="flex items-center w-[50%] text-xs md:justify-center"
           >
             <img src={profileIcon} alt="Icon Email" className="mr-1 w-6 h-6" />
-            <p className='hidden md:block md:mr-2'>Email:</p>
+            <p className="hidden md:block md:mr-2">Email:</p>
             {email || 'user@email.com'}
           </a>
         </nav>

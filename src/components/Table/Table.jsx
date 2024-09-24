@@ -63,7 +63,7 @@ class Table extends Component {
   render() {
     const { expenses } = this.props;
     return (
-      <section className="sectionTable">
+      <article className="sectionTable">
         <table className="table">
           <thead className="tableHeaderLine">
             <tr>
@@ -82,7 +82,7 @@ class Table extends Component {
             {expenses.map((expense) => this.renderExpenseRow(expense))}
           </tbody>
         </table>
-      </section>
+      </article>
     );
   }
 }

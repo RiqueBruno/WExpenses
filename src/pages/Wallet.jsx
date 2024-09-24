@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import ChartComponent from '../components/ChartComponent/ChartComponent.tsx';
 import Header from '../components/Header/Header';
 import WalletForm from '../components/WalletForm/WalletForm';
 import Table from '../components/Table/Table';
@@ -32,6 +33,9 @@ class Wallet extends React.Component {
         <section className="w-full flex flex-col text-primary md:flex-row p-6">
           <WalletForm />
           <Table />
+        </section>
+        <section>
+          <ChartComponent />
         </section>
       </main>
     );

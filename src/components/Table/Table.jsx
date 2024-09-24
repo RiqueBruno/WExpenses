@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
 import { delExpense, idExpenseEditing } from '../../redux/actions';
+import '../../styles/scroll.css';
 
 const tableHeaders = [
   { id: 1, title: 'Descrição' },
@@ -80,8 +81,8 @@ class Table extends Component {
   render() {
     const { expenses } = this.props;
     return (
-      <article className="w-full h-96 md:h-full overflow-x-auto bg-gray border-2 border-primary rounded-md p-8 md:shadow-custom">
-        <table className="w-full h-full">
+      <article className="w-full h-96 md:w-full md:max-h-[800px] md:h-[700px] overflow-x-auto overflow-y-scroll bg-gray border-2 border-primary rounded-md p-8 md:shadow-custom scrollClass">
+        <table className="w-full h-fit">
           <thead className="w-full h-20">
             <tr className="flex flex-row w-full h-20 p-4 border-b border-white text-white">
               {tableHeaders.map((header) => this.renderExpenseRowH(header))}

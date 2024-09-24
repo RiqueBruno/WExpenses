@@ -65,7 +65,7 @@ class Login extends React.Component {
             <button
               type="button"
               name="btnIsActive"
-              className="w-full bg-bg-btn-gradient text-white font-bold py-2 px-4 mt-2 rounded hover:bg-bg-btn-gradient-reverse focus:outline-none focus:shadow-outline"
+              className="w-full bg-bg-btn-gradient text-white font-bold py-2 px-4 mt-2 rounded hover:bg-bg-btn-gradient-reverse focus:outline-none focus:shadow-outline disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-bg-btn-gradient"
               disabled={btnIsDisabled}
               onClick={this.handlerClick}
             >

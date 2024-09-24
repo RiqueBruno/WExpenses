@@ -19,14 +19,16 @@ const tableHeaders = [
 
 class Table extends Component {
   handlerClickDelBtn = (event) => {
-    const { id } = event.target;
+    const { id } = event.currentTarget;
     const { dispatch } = this.props;
+    
     dispatch(delExpense(id));
   };
 
   handlerClickEditBtn = (event) => {
-    const { id } = event.target;
+    const { id } = event.currentTarget;
     const { dispatch } = this.props;
+    
     dispatch(idExpenseEditing(Number(id)));
   };
 
@@ -80,6 +82,7 @@ class Table extends Component {
 
   render() {
     const { expenses } = this.props;
+    
     return (
       <article className="w-full h-96 md:w-full md:max-h-[800px] md:h-[700px] overflow-x-auto overflow-y-scroll bg-gray border-2 border-primary rounded-md p-8 md:shadow-custom scrollClass">
         <table className="w-full h-fit">

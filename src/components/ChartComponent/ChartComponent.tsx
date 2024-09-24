@@ -23,8 +23,8 @@ const ChartComponent: React.FC<ChartProps> = ({
   title,
 }) => {
   return (
-    <div className="w-full flex justify-center items-center">
-      <h2>{title}</h2>
+    <div className="w-full h-60 mt-32 flex justify-center items-center">
+      <h2 className="text-white text-lg">{title}</h2>
       <Chart
         chartType={chartType}
         width={width}

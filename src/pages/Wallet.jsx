@@ -1,10 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Header from '../components/Header/Header';
 import WalletForm from '../components/WalletForm/WalletForm';
 import Table from '../components/Table/Table';
+import { setExpenses } from '../redux/actions';
 import '../styles/scroll.css';
 
 class Wallet extends React.Component {
+  componentDidMount() {
+    const { expenses, dispatch } = this.props;
+
+    const savedExpenses = JSON.parse(localStorage.getItem('expenses'));
+    if (expenses.length === 0 && savedExpenses) {
+      dispatch(setExpenses(savedExpenses));
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { expenses } = this.props;
+
+    if (prevProps.expenses !== expenses) {
+      localStorage.setItem('expenses', JSON.stringify(expenses));
+    }
+  }
+
   render() {
     return (
       <main className="bg-black h-full w-full overflow-hidden overflow-y-auto flex flex-col p-4 items-center scrollClass">
@@ -18,4 +38,12 @@ class Wallet extends React.Component {
   }
 }
 
-export default Wallet;
+Wallet.propTypes = {
+  expenses: PropTypes.arrayOf
+}.IsRequired;
+
+const mapStateToProps = (globalState) => ({
+  expenses: globalState.wallet.expenses,
+});
+
+export default connect(mapStateToProps)(Wallet);

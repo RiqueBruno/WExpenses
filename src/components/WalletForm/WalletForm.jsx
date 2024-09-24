@@ -108,7 +108,7 @@ class WalletForm extends Component {
     ];
         
     return (
-      <article className="md:w-[28%] z-[0] md:h-full md:bg-orangeTranparent md:border-2 md:border-primary md:rounded-md py-6 px-2 pb-8 flex flex-col justify-center items-center md:mr-8">
+      <article className="md:w-[28%] z-[0] md:h-full md:bg-orangeTranparent md:border-2 md:border-primary md:rounded-md py-6 px-2 pb-8 flex flex-col justify-center items-center md:mr-8 md:shadow-custom">
           <button
             type="button"
             className={`${canOpenForm ? "hidden" : "block md:hidden"} bg-bg-btn-gradient hover:bg-bg-btn-gradient-reverse text-white p-2 rounded-md`}

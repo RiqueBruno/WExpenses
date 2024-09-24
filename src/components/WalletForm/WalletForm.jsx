@@ -80,12 +80,20 @@ class WalletForm extends Component {
     const { currencies, isEditingTrue } = this.props;
     const { value, description, currency, method, tag } = this.state;
     return (
-      <div className="WalletForm">
-        <label htmlFor="inputValue">Valor:</label>
-        <input
-          type="number"
-          name="value"
-          id="inputValue"
+      <article className="md:w-[28%] md:h-full md:border-2 md:border-primary md:rounded-md py-6 px-2 pb-8 flex flex-col justify-center items-center md:mr-8">
+          <button
+            type="button"
+            className={`${canOpenForm ? "hidden" : "block md:hidden"} bg-bg-btn-gradient hover:bg-bg-btn-gradient-reverse text-white p-2 rounded-md`}
+            onClick={this.canOpenFormClick}
+          >
+            Nova despesa
+          </button>
+              <form className={`${canOpenForm ? "block" : "hidden"} md:block w-full flex-col flex justify-center px-8`}>
+                <h2 className="w-full text-center text-lg mb-8">Adicione suas Despesas</h2>
+                <Input
+                  type="number"
+                  name="value"
+                  id="inputValue"
           data-testid="value-input"
           min="0"
           value={value}

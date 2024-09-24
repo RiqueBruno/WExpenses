@@ -6,15 +6,18 @@ module.exports = {
       keyframes: {
         'slide-down': {
           '0%': {
-            transform: 'translateY(-100%)', // Começa fora da tela
+            transform: 'translateY(-100%)',
           },
           '100%': {
-            transform: 'translateY(0)', // Fica na posição original
+            transform: 'translateY(0)',
           },
         },
       },
       animation: {
-        'slide-down': 'slide-down 0.5s ease-out forwards', // Define a animação
+        'slide-down': 'slide-down 0.5s ease-out forwards',
+      },
+      boxShadow: {
+        custom: '-12px 11px 5px 0px rgba(249,140,41,0.82)',
       },
     },
     colors: {

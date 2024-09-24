@@ -93,6 +93,7 @@ class WalletForm extends Component {
     const { currencies, isEditingTrue } = this.props;
     const { value, description, currency, method, tag, newExpense } = this.state;
     const canOpenForm = isEditingTrue || newExpense === true;
+    const isFormValid = Number(value) > 0 && description.length > 0;
     const paymentMethods = [
       'Dinheiro',
       'Pix',
@@ -162,7 +163,8 @@ class WalletForm extends Component {
                 {isEditingTrue ? (
                   <button
                     type="button"
-                    className=" bg-bg-btn-gradient hover:bg-bg-btn-gradient-reverse text-white p-2 rounded-md mt-4 w-full"
+                    disabled={!isFormValid}
+                    className=" bg-bg-btn-gradient hover:bg-bg-btn-gradient-reverse text-white p-2 rounded-md mt-4 w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-bg-btn-gradient"
                     onClick={this.hrCkToSaveExpenseEditeds}
                   >
                     Editar despesa
@@ -170,7 +172,8 @@ class WalletForm extends Component {
                 ) : (
                   <button
                     type="button"
-                    className=" bg-bg-btn-gradient hover:bg-bg-btn-gradient-reverse text-white p-2 rounded-md mt-4 w-full"
+                    disabled={!isFormValid}
+                    className=" bg-bg-btn-gradient hover:bg-bg-btn-gradient-reverse text-white p-2 rounded-md mt-4 w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-bg-btn-gradient"
                     onClick={this.handlerClick}
                   >
                     Salvar despesa
